@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import "tailwindcss";
+
+/* =========================================================================
+   DERBY SYNTHETICA — SÍNTESE "GLOSSY WANNATHIS x ARENA 2047"
+   ========================================================================= */
+
+@theme {
+  --color-void: #050611;
+  --color-slate-deep: #0A0C20;
+  --color-ink: #F8FAFC;
+  --color-accent: #FF2E97;
+  --color-live: #00F0FF;
+  --color-violet: #A855F7;
+  --color-gold: #FFB800;
+  --color-mint: #10B981;
+
+  --font-audiowide: 'Audiowide', cursive, sans-serif;
+  --font-display: 'Audiowide', var(--font-audiowide), var(--font-orbitron), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-share-tech-mono), ui-monospace, monospace;
+  --font-body: var(--font-rajdhani), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-audiowide {
+  font-family: 'Audiowide', cursive, sans-serif !important;
+}
+
+@layer base {
+  html {
+    background-color: #050611;
+    scrollbar-gutter: stable;
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    background-color: #050611;
+    color: #F8FAFC;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2 {
+    font-family: 'Audiowide', var(--font-audiowide), var(--font-display);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+  }
+
+  ::selection {
+    background: rgba(0, 240, 255, 0.35);
+    color: #FFFFFF;
+  }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #050611; }
+  ::-webkit-scrollbar-thumb { background: rgba(0, 240, 255, 0.3); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+
+  :focus-visible {
+    outline: 2px solid #00F0FF;
+    outline-offset: 2px;
+  }
+}
+
+/* =========================================================================
+   ANIMAÇÕES & EFEITOS GLOSSY / WANNATHIS
+   ========================================================================= */
+
+@keyframes glossyShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-12px) rotate(4deg) scale(1.02); }
+}
+
+@keyframes dichroicPulse {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(0,240,255,0.4)) drop-shadow(0 0 24px rgba(255,46,151,0.2)); }
+  50% { filter: drop-shadow(0 0 20px rgba(168,85,247,0.6)) drop-shadow(0 0 32px rgba(0,240,255,0.5)); }
+}
+
+@keyframes tickerSlide {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@layer components {
+
+  /* Glossy Glass Card com Borda Dicróica e Brilho Especular */
+  .glossy-card {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(15, 18, 45, 0.6) 100%
+    );
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 1.25rem;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.3),
+      0 12px 40px rgba(0, 0, 0, 0.6);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glossy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 240, 255, 0.7) 25%,
+      rgba(255, 46, 151, 0.7) 50%,
+      rgba(168, 85, 247, 0.7) 75%,
+      transparent 100%
+    );
+    border-radius: 1.25rem 1.25rem 0 0;
+    opacity: 0.7;
+  }
+
+  .glossy-card:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(22, 27, 62, 0.75) 100%
+    );
+    border-color: rgba(0, 240, 255, 0.45);
+    box-shadow:
+      inset 0 1px 2px rgba(255, 255, 255, 0.5),
+      0 16px 50px rgba(0, 0, 0, 0.7),
+      0 0 25px rgba(0, 240, 255, 0.2);
+    transform: translateY(-3px);
+  }
+
+  /* Botão Liquido Glossy */
+  .glossy-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 0.7rem 1.35rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(168, 85, 247, 0.18));
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 4px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .glossy-btn:hover {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.35), rgba(168, 85, 247, 0.35));
+    border-color: #00F0FF;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.4);
+    color: #FFFFFF;
+    transform: scale(1.02);
+  }
+
+  .glossy-btn-magenta {
+    background: linear-gradient(135deg, rgba(255, 46, 151, 0.22), rgba(168, 85, 247, 0.22));
+    border-color: rgba(255, 46, 151, 0.4);
+  }
+
+  .glossy-btn-magenta:hover {
+    background: linear-gradient(135deg, rgba(255, 46, 151, 0.45), rgba(168, 85, 247, 0.45));
+    border-color: #FF2E97;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 0 22px rgba(255, 46, 151, 0.45);
+  }
+
+  .glossy-btn-gold {
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.22), rgba(255, 46, 151, 0.18));
+    border-color: rgba(255, 184, 0, 0.5);
+    color: #FFE688;
+  }
+
+  .glossy-btn-gold:hover {
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.45), rgba(255, 46, 151, 0.3));
+    border-color: #FFB800;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 184, 0, 0.5);
+    color: #FFFFFF;
+  }
+
+  .sw-scan {
+    background: linear-gradient(
+      rgba(0, 240, 255, 0) 50%,
+      rgba(0, 0, 0, 0.2) 50%
+    );
+    background-size: 100% 4px;
+  }
+
+  /* Campos do Sistema Editorial e Formulários */
+  .sw-field {
+    width: 100%;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(10, 12, 32, 0.65);
+    backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+    transition: all 0.25s ease;
+  }
+
+  .sw-field:focus-within {
+    border-color: #00F0FF;
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.3), inset 0 0 8px rgba(0, 240, 255, 0.1);
+  }
+
+  .sw-field-erro {
+    border-color: #FF2E97 !important;
+    box-shadow: 0 0 16px rgba(255, 46, 151, 0.3) !important;
+  }
+
+  .sw-field input,
+  .sw-field textarea,
+  .sw-field select {
+    width: 100% !important;
+    display: block;
+    background: transparent !important;
+    color: #FFFFFF !important;
+    font-family: var(--font-mono);
+    outline: none !important;
+    border: none !important;
+    box-sizing: border-box;
+  }
+
+  .sw-field input::placeholder,
+  .sw-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .sw-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
